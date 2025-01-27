@@ -1,0 +1,634 @@
+/* Chat Screen Styles */
+.chat-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+/* Chat Header */
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #202c33;
+    color: white;
+}
+
+.header-info h3 {
+    margin: 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Back Icon */
+.back-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.back-icon:hover {
+    color: #cccccc;
+}
+
+/* Chat Messages */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    position: relative;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sender's Message (Right-Aligned) */
+.chat-message.sent {
+    align-self: flex-end;
+    background-color: #005c4b;
+    color: white;
+    border-radius: 10px 10px 0 10px;
+}
+
+/* Receiver's Message (Left-Aligned) */
+.chat-message.received {
+    align-self: flex-start;
+    background-color: #e4e6eb;
+    color: black;
+    border-radius: 10px 10px 10px 0;
+}
+
+.message-text {
+    margin: 0;
+}
+
+.message-timestamp {
+    align-self: flex-end;
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+}
+
+/* Input Box */
+.chat-input-box {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input-box input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+/* Send Icon */
+.send-icon {
+    font-size: 24px;
+    color: #005c4b;
+    cursor: pointer;
+}
+
+.send-icon:hover {
+    color: #007b6b;
+}
+
+
+/* Centered Form Container */
+.form-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Header */
+.form-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Input Fields */
+.form-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-container input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Links */
+.form-container p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-container p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+}
+
+.form-container p a:hover {
+    color: #0056b3;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Home Screen Styles */
+.home-screen {
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #202c33;
+    color: white;
+    position: relative;
+}
+
+.home-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.menu {
+    position: relative;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.menu-dropdown {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    display: none;
+    z-index: 10;
+}
+
+.menu-dropdown.show {
+    display: block;
+}
+
+.menu-dropdown p {
+    margin: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+    text-align: left;
+}
+
+.menu-dropdown p:hover {
+    background-color: #f0f0f0;
+}
+
+/* Delete Bar */
+.delete-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #202c33;
+}
+
+.delete-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Contacts List */
+.contacts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.contact-item:hover {
+    background-color: #f0f0f0;
+}
+
+.contact-item.selectable {
+    cursor: default;
+}
+
+.contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.contact-details {
+    flex: 1;
+}
+
+.contact-name {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.contact-timestamp {
+    margin: 0;
+    font-size: 12px;
+    color: #999;
+}
+/* Home Screen Styles */
+.home-screen {
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #202c33;
+    color: white;
+    position: relative;
+}
+
+.home-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.menu {
+    position: relative;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.menu-dropdown {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    display: none;
+    z-index: 10;
+}
+
+.menu-dropdown.show {
+    display: block;
+}
+
+.menu-dropdown p {
+    margin: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+    text-align: left;
+}
+
+.menu-dropdown p:hover {
+    background-color: #f0f0f0;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.search-bar .search-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #666;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Delete Bar */
+.delete-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #202c33;
+}
+
+.delete-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Contacts List */
+.contacts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+    height: calc(100vh - 130px); /* Adjust height to match other elements */
+    background-color: #f9f9f9;
+}
+
+/* Contacts List */
+.contacts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+    height: calc(100vh - 130px); /* Adjust height to match other elements */
+    background-color: #f9f9f9;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.contact-item:hover {
+    background-color: #f0f0f0;
+}
+
+.contact-item.selectable {
+    cursor: default;
+}
+
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.contact-details {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.contact-name {
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px; /* Increased font size */
+    color: #333;
+}
+
+/* Contacts List */
+.contacts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+    height: calc(100vh - 130px);
+    background-color: #f9f9f9;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures checkboxes are aligned to the right */
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.contact-item:hover {
+    background-color: #f0f0f0;
+}
+
+.contact-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+}
+
+.contact-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Checkbox Alignment */
+.contact-checkbox {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Menu Dropdown */
+.menu-dropdown {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    display: none;
+    animation: fadeOut 0.2s ease-in-out;
+}
+
+.menu-dropdown.show {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.menu-dropdown p {
+    margin: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+    text-align: left;
+}
+
+.menu-dropdown p:hover {
+    background-color: #f0f0f0;
+}
+
+/* Delete Bar */
+.delete-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #202c33;
+}
+
+.delete-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.logout-button {
+    padding: 8px 12px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.logout-button:hover {
+    background-color: #c9302c;
+}
