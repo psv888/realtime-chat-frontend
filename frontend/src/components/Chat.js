@@ -21,7 +21,19 @@ const Chat = ({ sender }) => {
         });
 
         socket.on('privateMessage', (message) => {
-            setMessages((prev) => [...prev, message]);
+            // Avoid adding duplicate bubbles
+            if (message.sender !== sender) {
+                setMessages((prev) => [...prev, message]);
+            }
+        });
+
+        // **Mark messages as read when opening chat**
+        fetch('http://localhost:5000/api/users/mark-read', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ sender: receiver, receiver: sender }), // Reverse to mark incoming messages as read
         });
 
         return () => {
@@ -35,27 +47,43 @@ const Chat = ({ sender }) => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
-    // Format timestamp as "Jan 25, 2025, 02:30 PM"
-    const formatTimestamp = () => {
-        const now = new Date();
-        const options = {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-           
-        };
-        return now.toLocaleString('en-US', options);
-    };
-
     const sendMessage = () => {
         if (text.trim()) {
-            const timestamp = formatTimestamp(); // Get formatted timestamp
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Emit the message to the server
             socket.emit('privateMessage', { sender, receiver, text, timestamp });
+
+            // Add the message locally (only for the sender)
+            setMessages((prev) => [
+                ...prev,
+                { sender, receiver, text, timestamp },
+            ]);
+
+            // Call backend API to update contacts
+            fetch('http://localhost:5000/api/users/update-contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ sender, receiver }),
+            });
+
             setText(''); // Clear the input field
         }
+    };
+
+    // **Mark messages as read when exiting chat**
+    const handleExitChat = () => {
+        fetch('http://localhost:5000/api/users/mark-read', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ sender: receiver, receiver: sender }), // Reverse to mark incoming messages as read
+        });
+
+        navigate('/home'); // Redirect to home after marking messages as read
     };
 
     return (
@@ -65,21 +93,13 @@ const Chat = ({ sender }) => {
                 <div className="header-info">
                     <h3>{receiver}</h3>
                 </div>
-                <FiArrowLeft
-                    className="back-icon"
-                    onClick={() => navigate('/home')}
-                />
+                <FiArrowLeft className="back-icon" onClick={handleExitChat} />
             </div>
 
             {/* Chat Messages */}
             <div className="chat-messages">
                 {messages.map((msg, index) => (
-                    <div
-                        key={index}
-                        className={`chat-message ${
-                            msg.sender === sender ? 'sent' : 'received'
-                        }`}
-                    >
+                    <div key={index} className={`chat-message ${msg.sender === sender ? 'sent' : 'received'}`}>
                         <p className="message-text">{msg.text}</p>
                         <span className="message-timestamp">{msg.timestamp}</span>
                     </div>
@@ -103,3 +123,4 @@ const Chat = ({ sender }) => {
 };
 
 export default Chat;
+ 

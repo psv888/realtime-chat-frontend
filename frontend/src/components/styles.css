@@ -632,3 +632,115 @@
 .logout-button:hover {
     background-color: #c9302c;
 }
+
+
+/* Unread Message Count */
+.unread-count {
+    background-color: #5c7981; /* Red badge for unread messages */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 50%;
+    min-width: 20px;
+    min-height: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjustments for Contact Items */
+.contact-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.contact-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Ensure contact name and avatar align properly */
+.contact-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.contact-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.contact-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    flex-grow: 1;
+}
+
+/* Hide unread count if it's 0 */
+.unread-count:empty {
+    display: none;
+}
+
+.shuffle-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.shuffle-button:hover {
+    background-color: #0056b3;
+}
+
+
+.shuffle-icon {
+    font-size: 24px;
+    color: #2e5538;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.shuffle-icon:hover {
+    color: #24b497;
+}
+.status-message {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}

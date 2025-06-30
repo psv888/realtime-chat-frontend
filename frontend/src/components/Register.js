@@ -10,11 +10,20 @@ const Register = () => {
 
     const handleRegister = async () => {
         try {
-            await axios.post('http://localhost:5000/api/users/register', { username, password });
+            // Updated backend URL for local network
+            await axios.post('http://localhost:5000/api/users/register', {
+                username,
+                password,
+            });
             alert('Registration successful! Redirecting to login...');
             navigate('/login');
         } catch (error) {
-            alert('Username already exists or other error.');
+            // Show appropriate error messages
+            if (error.response && error.response.data && error.response.data.message) {
+                alert(error.response.data.message); // Use backend error message
+            } else {
+                alert('An error occurred. Please try again.');
+            }
         }
     };
 
@@ -36,7 +45,7 @@ const Register = () => {
             <button onClick={handleRegister}>Register</button>
             <p>
                 Already have an account?{' '}
-                <button onClick={() => navigate('/login')}>
+                <button onClick={() => navigate('/login')} className="link-button">
                     Login here
                 </button>
             </p>

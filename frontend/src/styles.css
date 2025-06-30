@@ -112,3 +112,36 @@ a:hover {
 .chat-input button {
     flex-shrink: 0;
 }
+
+
+.search-results {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 8px;
+    padding: 8px;
+}
+
+.search-result-item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f0f0f0;
+}
+
+.add-contact {
+    margin-top: 16px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+}

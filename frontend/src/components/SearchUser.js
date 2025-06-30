@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const SearchUser = ({ onSelectUser }) => {
-    const [friendUsername, setFriendUsername] = useState('');
+export default function ComingSoon() {
+  const navigate = useNavigate();
 
-    const handleSearch = () => {
-        if (!friendUsername.trim()) {
-            alert('Please enter a friend\'s username!');
-            return;
-        }
-        onSelectUser(friendUsername.trim());
-    };
+  return (
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4">
+      {/* Back Button */}
+      <div className="absolute top-4 left-4">
+        <button
+          onClick={() => navigate('/home')}
+          className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium"
+        >
+          {/* Unicode Left Arrow */}
+          <span className="text-xl">&#8592;</span>
+          <span>Back</span>
+        </button>
+      </div>
 
-    return (
-        <div>
-            <h2>Search for a Friend</h2>
-            <input
-                type="text"
-                placeholder="Friend's Username"
-                value={friendUsername}
-                onChange={(e) => setFriendUsername(e.target.value)}
-            />
-            <button onClick={handleSearch}>Start Chat</button>
-        </div>
-    );
-};
-
-export default SearchUser;
+      {/* Center Content */}
+      <div className="bg-white shadow-xl rounded-2xl p-8 max-w-md text-center">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">🚧 Coming Soon</h1>
+        <p className="text-gray-600 text-lg">This feature is under construction. Stay tuned!</p>
+      </div>
+    </div>
+  );
+}

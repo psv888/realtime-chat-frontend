@@ -4,39 +4,38 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 import Chat from './components/Chat';
+import SearchUser from './components/SearchUser'; // Updated import
 
 const App = () => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem('chatUser');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
+    const handleLogin = (userData) => {
+        localStorage.setItem('chatUser', JSON.stringify(userData));
+        setUser(userData);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('chatUser');
+        setUser(null);
+    };
 
     return (
         <Router>
             <Routes>
-                {/* Redirect "/" to "/register" */}
-                <Route path="/" element={<Navigate to="/register" />} />
-
-                {/* Registration route */}
+                <Route path="/" element={<Navigate to={user ? "/home" : "/register"} />} />
                 <Route path="/register" element={<Register />} />
-
-                {/* Login route */}
-                <Route path="/login" element={<Login onLogin={setUser} />} />
-
-                {/* Home route */}
-                <Route
-                    path="/home"
-                    element={user ? <Home user={user} /> : <Navigate to="/login" />}
-                />
-
-                {/* Chat route */}
-                <Route
-                    path="/chat/:username"
-                    element={user ? <Chat sender={user.username} /> : <Navigate to="/login" />}
-                />
-
-                {/* Fallback for unmatched routes */}
-                <Route path="*" element={<Navigate to="/register" />} />
+                <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                <Route path="/home" element={user ? <Home user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+                <Route path="/chat/:username" element={user ? <Chat sender={user.username} /> : <Navigate to="/login" />} />
+                <Route path="/search-user" element={user ? <SearchUser /> : <Navigate to="/login" />} /> {/* Updated route */}
+                <Route path="*" element={<Navigate to={user ? "/home" : "/register"} />} />
             </Routes>
         </Router>
     );
 };
 
 export default App;
+ 
